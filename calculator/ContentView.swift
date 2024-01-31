@@ -62,9 +62,8 @@ struct ContentView: View {
     ]
     
     var body: some View {
+        
         ZStack {
-            Color.black.edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
-            
             VStack {
                 Spacer()
                 HStack {
@@ -75,26 +74,33 @@ struct ContentView: View {
                         .foregroundColor(.white)
                 }
                 .padding()
-
+                
                 ForEach(buttons, id: \.self) { row in
                     HStack {
                         ForEach(row, id: \.self) { button in
-                            Button(action: {
-                                
-                            }, label: {
-                                Text(button.rawValue)
-                                    .font(.system(size: 32))
-                                    .frame(width: 70, height: 70)
-                                    .background(button.buttonColor)
-                                    .foregroundColor(button.textColor)
-                                    .cornerRadius(35)
-                            })
+                            
+                            Text(button.rawValue)
+                                .font(.system(size: 32))
+                                .frame(width: 70, height: 70)
+                                .background(button.buttonColor)
+                                .foregroundColor(button.textColor)
+                                .cornerRadius(35)
+                            
                         }
                     }
                     .padding()
                 }
             }
+            
         }
+    }
+    
+    func buttonWidth(proxyWidth: CGFloat) -> CGFloat {
+        return (proxyWidth - (5*12)) / 4
+    }
+    
+    func buttonHeight(proxyWidth: CGFloat) -> CGFloat {
+        return (proxyWidth - (5*12)) / 4
     }
 }
 
