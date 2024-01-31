@@ -10,31 +10,55 @@ import RealityKit
 import RealityKitContent
 
 enum CalculatorButton: String {
-    case zero
-    case one
-    case two
-    case three
-    case four
-    case five
-    case six
-    case seven
-    case eight
-    case nine
-    case decimal
-    case equals
-    case plus
-    case minus
-    case multiply
-    case divide
-    case percent
-    case toggleSign
-    case clear
+    case zero = "0"
+    case one = "1"
+    case two = "2"
+    case three = "3"
+    case four = "4"
+    case five = "5"
+    case six = "6"
+    case seven = "7"
+    case eight = "8"
+    case nine = "9"
+    case decimal = "."
+    case equal = "="
+    case plus = "+"
+    case minus = "-"
+    case multiply = "X"
+    case divide = "÷"
+    case percent = "%"
+    case toggleSign = "+/-"
+    case clear = "C"
+    
+    var buttonColor: Color {
+        switch self {
+        case .divide, .multiply, .minus, .plus, .equal:
+            return .orange
+        case .clear, .toggleSign, .percent:
+            return Color(.lightGray)
+        default:
+            return Color(.darkGray)
+        }
+    }
+    
+    var textColor: Color {
+        switch self {
+        case .clear, .toggleSign, .percent:
+            return .black
+        default:
+            return .white
+        }
+    }
 }
 
 struct ContentView: View {
     
     let buttons: [[CalculatorButton]] = [
-        [.seven, .eight, .nine]
+        [.clear, .toggleSign, .percent, .divide],
+        [.seven, .eight, .nine, .multiply],
+        [.four, .five, .six, .minus],
+        [.one, .two, .three, .plus],
+        [.zero, .zero, .decimal, .equal]
     ]
     
     var body: some View {
@@ -42,6 +66,7 @@ struct ContentView: View {
             Color.black.edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
             
             VStack {
+                Spacer()
                 HStack {
                     Spacer()
                     Text("0")
@@ -52,17 +77,21 @@ struct ContentView: View {
                 .padding()
 
                 ForEach(buttons, id: \.self) { row in
-                    ForEach(row, id: \.self) { button in
-                        Button(action: {
-                            
-                        }, label: {
-                            Text(button.rawValue)
-                                .frame(width: 70, height: 70)
-                                .background(Color.orange)
-                                .foregroundColor(.white)
-                                .cornerRadius(35)
-                        })
+                    HStack {
+                        ForEach(row, id: \.self) { button in
+                            Button(action: {
+                                
+                            }, label: {
+                                Text(button.rawValue)
+                                    .font(.system(size: 32))
+                                    .frame(width: 70, height: 70)
+                                    .background(button.buttonColor)
+                                    .foregroundColor(button.textColor)
+                                    .cornerRadius(35)
+                            })
+                        }
                     }
+                    .padding()
                 }
             }
         }
