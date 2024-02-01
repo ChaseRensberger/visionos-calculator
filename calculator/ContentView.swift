@@ -58,10 +58,12 @@ struct ContentView: View {
         [.seven, .eight, .nine, .multiply],
         [.four, .five, .six, .minus],
         [.one, .two, .three, .plus],
-        [.zero, .zero, .decimal, .equal]
+        [.zero, .decimal, .equal]
     ]
     
     var body: some View {
+        
+        @State var value = "0"
         
         ZStack {
             VStack {
@@ -78,13 +80,18 @@ struct ContentView: View {
                 ForEach(buttons, id: \.self) { row in
                     HStack {
                         ForEach(row, id: \.self) { button in
+                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                Text(button.rawValue)
+                                    .frame(width: buttonWidth(button: button), height: buttonHeight(button: button))
+                                
+                            })
+                            .font(.system(size: 32))
+                            .frame(width: buttonWidth(button: button), height: buttonHeight(button: button))
                             
-                            Text(button.rawValue)
-                                .font(.system(size: 32))
-                                .frame(width: 70, height: 70)
-                                .background(button.buttonColor)
-                                .foregroundColor(button.textColor)
-                                .cornerRadius(35)
+                            .background(button.buttonColor)
+                            .foregroundColor(button.textColor)
+                            .cornerRadius(35)
+                            
                             
                         }
                     }
@@ -95,12 +102,19 @@ struct ContentView: View {
         }
     }
     
-    func buttonWidth(proxyWidth: CGFloat) -> CGFloat {
-        return (proxyWidth - (5*12)) / 4
+    func didTap(button: CalculatorButton) {
+        
     }
     
-    func buttonHeight(proxyWidth: CGFloat) -> CGFloat {
-        return (proxyWidth - (5*12)) / 4
+    func buttonWidth(button: CalculatorButton) -> CGFloat {
+        if button == .zero {
+            return 160
+        }
+        return 70
+    }
+    
+    func buttonHeight(button: CalculatorButton) -> CGFloat {
+        return 70
     }
 }
 
