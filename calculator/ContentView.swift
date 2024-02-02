@@ -96,13 +96,15 @@ struct ContentView: View {
                             .background(button.buttonColor)
                             .foregroundColor(button.textColor)
                             .cornerRadius(35)
+                            .padding(2)
                             
                             
                         }
                     }
-                    .padding()
+                    
                 }
             }
+            .padding()
             
         }
     }

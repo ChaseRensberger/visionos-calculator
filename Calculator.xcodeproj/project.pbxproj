@@ -15,7 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A65E3A442B69D87100A0467E /* calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A65E3A442B69D87100A0467E /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A65E3A482B69D87100A0467E /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		A65E3A4B2B69D87100A0467E /* calculatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calculatorApp.swift; sourceTree = "<group>"; };
 		A65E3A4D2B69D87100A0467E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -48,7 +48,7 @@
 		A65E3A452B69D87100A0467E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A65E3A442B69D87100A0467E /* calculator.app */,
+				A65E3A442B69D87100A0467E /* Calculator.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -84,9 +84,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A65E3A432B69D87100A0467E /* calculator */ = {
+		A65E3A432B69D87100A0467E /* Calculator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A65E3A572B69D87200A0467E /* Build configuration list for PBXNativeTarget "calculator" */;
+			buildConfigurationList = A65E3A572B69D87200A0467E /* Build configuration list for PBXNativeTarget "Calculator" */;
 			buildPhases = (
 				A65E3A402B69D87100A0467E /* Sources */,
 				A65E3A412B69D87100A0467E /* Frameworks */,
@@ -96,12 +96,12 @@
 			);
 			dependencies = (
 			);
-			name = calculator;
+			name = Calculator;
 			packageProductDependencies = (
 				A65E3A492B69D87100A0467E /* RealityKitContent */,
 			);
 			productName = calculator;
-			productReference = A65E3A442B69D87100A0467E /* calculator.app */;
+			productReference = A65E3A442B69D87100A0467E /* Calculator.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -119,7 +119,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A65E3A3F2B69D87100A0467E /* Build configuration list for PBXProject "calculator" */;
+			buildConfigurationList = A65E3A3F2B69D87100A0467E /* Build configuration list for PBXProject "Calculator" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -132,7 +132,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A65E3A432B69D87100A0467E /* calculator */,
+				A65E3A432B69D87100A0467E /* Calculator */,
 			);
 		};
 /* End PBXProject section */
@@ -334,7 +334,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A65E3A3F2B69D87100A0467E /* Build configuration list for PBXProject "calculator" */ = {
+		A65E3A3F2B69D87100A0467E /* Build configuration list for PBXProject "Calculator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A65E3A552B69D87200A0467E /* Debug */,
@@ -343,7 +343,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A65E3A572B69D87200A0467E /* Build configuration list for PBXNativeTarget "calculator" */ = {
+		A65E3A572B69D87200A0467E /* Build configuration list for PBXNativeTarget "Calculator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A65E3A582B69D87200A0467E /* Debug */,

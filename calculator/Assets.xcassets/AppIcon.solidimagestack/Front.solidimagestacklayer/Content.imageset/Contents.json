@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "dots.png",
       "idiom" : "vision",
       "scale" : "2x"
     }
