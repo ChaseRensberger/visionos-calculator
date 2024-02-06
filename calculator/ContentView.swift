@@ -24,7 +24,7 @@ enum CalculatorButton: String {
     case equal = "="
     case plus = "+"
     case minus = "-"
-    case multiply = "X"
+    case multiply = "×"
     case divide = "÷"
     case percent = "%"
     case toggleSign = "+/-"
