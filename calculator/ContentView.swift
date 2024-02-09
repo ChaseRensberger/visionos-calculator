@@ -110,40 +110,27 @@ struct ContentView: View {
     }
     
     private func didTap(button: CalculatorButton) {
-        let valueArray = Array(value)
         switch button {
-        case .zero, .one, .two, .three, .four, .five, .six, .seven, .eight, .nine:
-            if value == "0" {
-                value = button.rawValue
-            } else {
-                value += button.rawValue
-            }
-        case .decimal:
-            if !valueArray.contains(".") {
-                value += button.rawValue
-            }
-            
-        case .plus, .minus, .multiply, .divide, .equal:
-            if button == .equal {
-                let runningValue = runningNumber
-                let currentValue = Double(value) ?? 0
-                switch currentOperation {
-                case .plus:
-                    value = "\(runningValue + currentValue)"
-                case .minus:
-                    value = "\(runningValue - currentValue)"
-                case .multiply:
-                    value = "\(runningValue * currentValue)"
-                case .divide:
-                    value = currentValue != 0 ? "\(runningValue / currentValue)" : "Error"
-                default:
-                    break
+        case .zero, .one, .two, .three, .four, .five, .six, .seven, .eight, .nine, .decimal:
+            // Handle number and decimal input with character limit...
+            if value.count < 9 || (value.count == 9 && value.contains("e")) {
+                if value == "0" || (currentOperation != nil && runningNumber != 0 && value == String(runningNumber)) {
+                    value = button.rawValue
+                } else {
+                    value += button.rawValue
                 }
-            } else {
-                runningNumber = Double(value) ?? 0
-                currentOperation = button
-                value = "0"
             }
+        case .plus, .minus, .multiply, .divide:
+            if currentOperation != nil {
+                evaluate()
+            }
+            runningNumber = Double(value) ?? 0
+            self.currentOperation = button
+            if button != .equal {
+                value = String(runningNumber)
+            }
+        case .equal:
+            evaluate()
         case .clear:
             value = "0"
             runningNumber = 0
@@ -157,6 +144,25 @@ struct ContentView: View {
                 value = "\(currentValue / 100)"
             }
         }
+    }
+    
+    private func evaluate() {
+        let runningValue = runningNumber
+        let currentValue = Double(value) ?? 0
+        switch currentOperation {
+        case .plus:
+            value = "\(runningValue + currentValue)"
+        case .minus:
+            value = "\(runningValue - currentValue)"
+        case .multiply:
+            value = "\(runningValue * currentValue)"
+        case .divide:
+            value = currentValue != 0 ? "\(runningValue / currentValue)" : "Error"
+        default:
+            break
+        }
+        currentOperation = nil
+        runningNumber = Double(value) ?? 0
     }
     
     func formatNumber(_ numberString: String) -> String {
