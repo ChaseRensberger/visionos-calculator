@@ -75,7 +75,7 @@ struct ContentView: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    Text(value)
+                    Text(formatNumber(value))
                         .font(.system(size: 64))
                         .bold()
                         .foregroundColor(.white)
@@ -114,13 +114,10 @@ struct ContentView: View {
     private func didTap(button: CalculatorButton) {
         switch button {
         case .zero, .one, .two, .three, .four, .five, .six, .seven, .eight, .nine, .decimal:
-            // Handle number and decimal input with character limit...
-            if value.count < maxDigits || (value.count == maxDigits && value.contains("e")) {
-                if value == "0" || (currentOperation != nil && runningNumber != 0 && value == String(runningNumber)) {
-                    value = button.rawValue
-                } else {
-                    value += button.rawValue
-                }
+            if value == "0" || (currentOperation != nil && runningNumber != 0 && value == String(runningNumber)) {
+                value = button.rawValue
+            } else {
+                value += button.rawValue
             }
         case .plus, .minus, .multiply, .divide:
             if currentOperation != nil && ![.plus, .minus, .multiply, .divide].contains(lastSelectedButton) {
@@ -174,22 +171,13 @@ struct ContentView: View {
         // Create a NumberFormatter
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-        formatter.minimumFractionDigits = 0
+        formatter.usesGroupingSeparator = true
         
-        // Convert string to NSNumber
         guard let number = Double(numberString) else {
             print("Invalid input: \(numberString)")
             return numberString
         }
         
-        // Determine the number of digits before the decimal
-        let integerPartCount = String(Int(abs(number))).count
-        
-        // Calculate the allowed number of fraction digits based on total digit count limit (9)
-        let allowedFractionDigits = max(0, 9 - integerPartCount)
-        formatter.maximumFractionDigits = allowedFractionDigits
-        
-        // Format number
         guard let formattedNumber = formatter.string(from: NSNumber(value: number)) else {
             print("Number formatting failed for: \(number)")
             return numberString
