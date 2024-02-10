@@ -56,6 +56,8 @@ struct ContentView: View {
     @State private var value = "0" // Current display value
     @State private var runningNumber = 0.0 // Current running number
     @State private var currentOperation: CalculatorButton? = nil // Current operation
+    private let maxDigits = 9;
+    @State private var lastSelectedButton = CalculatorButton.clear
     
     let buttons: [[CalculatorButton]] = [
         [.clear, .toggleSign, .percent, .divide],
@@ -113,7 +115,7 @@ struct ContentView: View {
         switch button {
         case .zero, .one, .two, .three, .four, .five, .six, .seven, .eight, .nine, .decimal:
             // Handle number and decimal input with character limit...
-            if value.count < 9 || (value.count == 9 && value.contains("e")) {
+            if value.count < maxDigits || (value.count == maxDigits && value.contains("e")) {
                 if value == "0" || (currentOperation != nil && runningNumber != 0 && value == String(runningNumber)) {
                     value = button.rawValue
                 } else {
@@ -121,7 +123,7 @@ struct ContentView: View {
                 }
             }
         case .plus, .minus, .multiply, .divide:
-            if currentOperation != nil {
+            if currentOperation != nil && ![.plus, .minus, .multiply, .divide].contains(lastSelectedButton) {
                 evaluate()
             }
             runningNumber = Double(value) ?? 0
@@ -130,7 +132,9 @@ struct ContentView: View {
                 value = String(runningNumber)
             }
         case .equal:
-            evaluate()
+            if ![.multiply, .divide, .minus, .plus, .equal].contains(lastSelectedButton){
+                evaluate()
+            }
         case .clear:
             value = "0"
             runningNumber = 0
@@ -144,6 +148,7 @@ struct ContentView: View {
                 value = "\(currentValue / 100)"
             }
         }
+        lastSelectedButton = button
     }
     
     private func evaluate() {
