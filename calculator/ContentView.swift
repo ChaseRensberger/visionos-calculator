@@ -124,7 +124,7 @@ struct ContentView: View {
                 evaluate()
             }
             runningNumber = Double(value) ?? 0
-            self.currentOperation = button
+            currentOperation = button
             if button != .equal {
                 value = String(runningNumber)
             }
@@ -163,7 +163,7 @@ struct ContentView: View {
         default:
             break
         }
-        currentOperation = nil
+        currentOperation = .equal
         runningNumber = Double(value) ?? 0
     }
     
